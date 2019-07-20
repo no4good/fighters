@@ -1,7 +1,7 @@
 const API_URL = 'https://api.github.com/';
 const rootElement = document.getElementById('root');
 const loadingElement = document.getElementById('loading-overlay');
-
+const arr = [];
 
 
 
@@ -151,10 +151,33 @@ class FightersView extends View {
 
     async handleFighterClick(event, fighter) {
         let fighterDetails = await fighterService.getFighterDetails();
-        console.log(fighter);
-        console.log(fighterDetails[fighter._id - 1]);
-        console.log(this.fightersDetailsMap.set(fighter._id, fighterDetails[fighter._id - 1]));
+        this.fightersDetailsMap.set(fighter._id, fighterDetails[fighter._id - 1])
 
+        if (arr.length === 0) {
+            arr.push([fighterDetails[fighter._id - 1], event.path[1]])
+            event.path[1].classList.add('ss');
+        } else {
+            if (arr.length < 2) {
+                arr.map((x, i) => x[0].name === event.path[1].innerText ? (arr[i][1].classList.remove('ss'), arr.splice(i, 1)) :
+                    arr.push([fighterDetails[fighter._id - 1], event.path[1]]), event.path[1].classList.add('ss'));
+            } else {
+                arr[0][1].classList.remove('ss');
+                arr.shift();
+                arr.push([fighterDetails[fighter._id - 1], event.path[1]]);
+                event.path[1].classList.add('ss');
+            }
+        }
+
+        // const popup = document.querySelector('.popup');
+        // popup.style.left = event.x + 'px';
+        // popup.style.top = event.y + 'px';
+        // setTimeout(function () {
+        //     document.body.classList.add('opened');
+
+        //     setTimeout(function () {
+        //         popup.classList.add('opened');
+        //     }, 10);
+        // }, 10);
 
 
     }
