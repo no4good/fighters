@@ -33,12 +33,10 @@ class FighterService {
             throw error;
         }
     }
-    async getFighterDetails(id) {
+    async getFighterDetails() {
         try {
-            const endpoint = 'repos/sahanr/street-fighter/contents/fighters.json';
-            // const endpoints = endpoint[id];
+            const endpoint = 'repos/no4good/fighters/contents/fighterdetalies.json';
             const apiResult = await callApi(endpoint, 'GET');
-
             return JSON.parse(atob(apiResult.content));
         } catch (error) {
             throw error;
@@ -151,9 +149,13 @@ class FightersView extends View {
         this.element.append(...fighterElements);
     }
 
-    handleFighterClick(event, fighter) {
-        this.fightersDetailsMap.set(fighter._id, fighter);
-        console.log('clicked')
+    async handleFighterClick(event, fighter) {
+        let fighterDetails = await fighterService.getFighterDetails();
+        console.log(fighter);
+        console.log(fighterDetails[fighter._id - 1]);
+        console.log(this.fightersDetailsMap.set(fighter._id, fighterDetails[fighter._id - 1]));
+
+
 
     }
 }
@@ -171,8 +173,7 @@ class App {
             App.loadingElement.style.visibility = 'visible';
 
             const fighters = await fighterService.getFighters();
-            const fighterDetails = await fighterService.getFighterDetails();
-            console.log(fighterDetails);
+
             const fightersView = new FightersView(fighters);
             const fightersElement = fightersView.element;
 
