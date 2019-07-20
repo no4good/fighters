@@ -62,6 +62,7 @@ class Fighter {
 
 const fighterService = new FighterService();
 
+
 class View {
     element;
 
@@ -153,35 +154,15 @@ class FightersView extends View {
         let fighterDetails = await fighterService.getFighterDetails();
         this.fightersDetailsMap.set(fighter._id, fighterDetails[fighter._id - 1])
 
-        if (arr.length === 0) {
-            arr.push([fighterDetails[fighter._id - 1], event.path[1]])
-            event.path[1].classList.add('ss');
-        } else {
-            if (arr.length < 2) {
-                arr.map((x, i) => x[0].name === event.path[1].innerText ? (arr[i][1].classList.remove('ss'), arr.splice(i, 1)) :
-                    arr.push([fighterDetails[fighter._id - 1], event.path[1]]), event.path[1].classList.add('ss'));
-            } else {
-                arr[0][1].classList.remove('ss');
-                arr.shift();
-                arr.push([fighterDetails[fighter._id - 1], event.path[1]]);
-                event.path[1].classList.add('ss');
-            }
-        }
+        const fighterinfo = new Fighter(fighterDetails[fighter._id - 1]);
 
-        // const popup = document.querySelector('.popup');
-        // popup.style.left = event.x + 'px';
-        // popup.style.top = event.y + 'px';
-        // setTimeout(function () {
-        //     document.body.classList.add('opened');
 
-        //     setTimeout(function () {
-        //         popup.classList.add('opened');
-        //     }, 10);
-        // }, 10);
+        console.log(`Name: ${fighterinfo.fighter.name}\nHealth: ${fighterinfo.fighter.health}\nAttack: ${fighterinfo.fighter.attack}\nDefense: ${fighterinfo.fighter.defense}`);
 
 
     }
 }
+
 
 class App {
     constructor() {
