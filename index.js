@@ -1,9 +1,6 @@
 const API_URL = 'https://api.github.com/';
 const rootElement = document.getElementById('root');
 const loadingElement = document.getElementById('loading-overlay');
-const arr = [];
-
-
 
 
 function callApi(endpoind, method) {
@@ -33,7 +30,7 @@ class FighterService {
             throw error;
         }
     }
-    async getFighterDetails() {
+    async getFighterDetails() { //this
         try {
             const endpoint = 'repos/no4good/fighters/contents/fighterdetalies.json';
             const apiResult = await callApi(endpoint, 'GET');
@@ -44,7 +41,7 @@ class FighterService {
     }
 }
 
-class Fighter {
+class Fighter { //this
     constructor(fighter) {
         this.fighter = fighter;
     }
@@ -151,7 +148,7 @@ class FightersView extends View {
     }
 
     async handleFighterClick(event, fighter) {
-        let fighterDetails = await fighterService.getFighterDetails();
+        let fighterDetails = await fighterService.getFighterDetails(); //this
         this.fightersDetailsMap.set(fighter._id, fighterDetails[fighter._id - 1])
 
         const fighterinfo = new Fighter(fighterDetails[fighter._id - 1]);

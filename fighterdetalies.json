@@ -1,29 +1,29 @@
 [{
     "_id": "1",
     "name": "Ryu",
-    "health": 45,
-    "attack": 4,
+    "health": 44,
+    "attack": 2,
     "defense": 3,
     "source": "https://media.giphy.com/media/kdHa4JvihB2gM/giphy.gif"
 }, {
     "_id": "2",
     "name": "Dhalsim",
-    "health": 60,
+    "health": 56,
     "attack": 3,
-    "defense": 1,
+    "defense": 2,
     "source": "https://i.pinimg.com/originals/c0/53/f2/c053f2bce4d2375fee8741acfb35d44d.gif"
 }, {
     "_id": "3",
     "name": "Guile",
-    "health": 45,
+    "health": 44,
     "attack": 4,
     "defense": 3,
     "source": "https://66.media.tumblr.com/tumblr_lq8g3548bC1qd0wh3o1_400.gif"
 }, {
     "_id": "4",
     "name": "Zangief",
-    "health": 60,
-    "attack": 4,
+    "health": 39,
+    "attack": 6,
     "defense": 1,
     "source": "https://media1.giphy.com/media/nlbIvY9K0jfAA/source.gif"
 }, {
